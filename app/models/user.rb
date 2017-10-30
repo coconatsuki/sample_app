@@ -13,6 +13,9 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
 
   has_secure_password
+  has_many :microposts
+
+  #--------------------------------METHODS-----------------------------------
 
   # Returns the hash digest of the given string.
   def self.digest(string)
@@ -25,6 +28,8 @@ class User < ApplicationRecord
   def self.new_token
     SecureRandom.urlsafe_base64
   end
+
+  #---------------------------------------------------------------------------
 
   # Returns true if the given token matches the digest.
  def authenticated?(attribute, token)
